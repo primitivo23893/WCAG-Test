@@ -1,0 +1,254 @@
+/* style.css */
+body {
+    font-family: sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Estilos para los inputs dentro de las celdas */
+td input[type="text"] {
+    width: 95%;
+    border: none;
+    padding: 5px;
+    font-size: inherit; /* Hereda tamaño de fuente de la celda */
+    background-color: transparent; /* Hace que parezca texto normal */
+}
+
+td input[type="text"]:focus {
+    outline: 1px solid #007bff; /* Resalta al editar */
+    background-color: #f0f8ff;
+}
+
+/* Estilo específico para la celda de previsualización */
+.preview-cell {
+    font-weight: bold;
+    text-align: center;
+    cursor: default; /* Evita el cursor de texto */
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.wcag-pass-aa, .wcag-pass-aaa {
+    color: #1b5e20; /* Verde oscuro */
+}
+
+
+
+.contrast-cell {
+    /* font-weight: bold; */ /* Quizás ya no sea necesario en toda la celda */
+    text-align: left;    /* Mejor alineado a la izquierda para este formato */
+    font-size: 0.9em;    /* Un poco más pequeño */
+    line-height: 1.4;    /* Ajusta el espacio entre líneas */
+    vertical-align: middle; /* Alinear contenido verticalmente */
+}
+
+/* Clase para el texto "Pass" (Verde) */
+.wcag-pass {
+    color: #1B5E20; /* Verde oscuro */
+    font-weight: bold; /* Resaltar el estado */
+}
+
+/* Clase para el texto "Fail" (Rojo) */
+.wcag-fail {
+    color: #B71C1C; /* Rojo oscuro */
+    font-weight: bold; /* Resaltar el estado */
+}
+
+/* Clase para el texto "Error" (Naranja/Amarillo) */
+.wcag-error {
+    color: #E65100; /* Naranja oscuro */
+    font-style: italic;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+
+    /* Forzar a la tabla a no ser una tabla, sino bloques */
+    #dataTable, #dataTable thead, #dataTable tbody, #dataTable th, #dataTable td, #dataTable tr {
+        display: block;
+    }
+
+    /* Ocultar encabezados originales (<th>) en el thead */
+    #dataTable thead tr {
+        position: absolute; /* Ocultarlo completamente */
+        top: -9999px;
+        left: -9999px;
+        border: none; /* Quitar bordes del thead oculto */
+    }
+
+    #dataTable tr {
+        border: 1px solid #ccc; /* Añadir borde a cada "tarjeta" de fila */
+        margin-bottom: 15px; /* Espacio entre filas/tarjetas */
+    }
+
+    #dataTable td {
+        /* Comportamiento de celda de tabla normal */
+        border: none; /* Quitar bordes internos de celda */
+        border-bottom: 1px solid #eee; /* Línea separadora entre "campos" */
+        position: relative;
+        padding-left: 50%; /* Espacio a la izquierda para la etiqueta */
+        padding-top: 8px;
+        padding-bottom: 8px;
+        text-align: right; /* Alinear valor a la derecha */
+        white-space: normal; /* Permitir que el texto largo se ajuste */
+        min-height: 30px; /* Altura mínima para que quepa la etiqueta */
+        display: flex; /* Usar flex para alinear etiqueta y contenido */
+        align-items: center; /* Centrar verticalmente */
+        justify-content: flex-end; /* Alinear contenido a la derecha */
+    }
+
+    #dataTable td::before {
+        /* Añadir la etiqueta (encabezado) antes del contenido */
+        position: absolute;
+        left: 10px; /* Espacio desde el borde izquierdo */
+        width: 45%; /* Ancho de la etiqueta */
+        padding-right: 10px;
+        white-space: nowrap; /* Evitar que la etiqueta se parta */
+        content: attr(data-label); /* Usaremos un atributo 'data-label' (ver abajo) */
+        font-weight: bold;
+        text-align: left; /* Alinear etiqueta a la izquierda */
+    }
+
+    /* Asignar las etiquetas a cada celda usando su posición */
+    /* ¡Asegúrate que el orden coincida con tus columnas! */
+    #dataTable td:nth-of-type(1)::before { content: "NOMBRE"; }
+    #dataTable td:nth-of-type(2)::before { content: "FONDO (HEX)"; }
+    #dataTable td:nth-of-type(3)::before { content: "FUENTE (HEX)"; }
+    #dataTable td:nth-of-type(4)::before { content: "PREVISUAL."; }
+    #dataTable td:nth-of-type(5)::before { content: "CONTRASTE"; }
+
+
+    /* Ajustar inputs y pickers dentro de las celdas */
+    #dataTable td input[type="text"] {
+        width: auto; /* Que se ajuste al contenido o espacio restante */
+        max-width: 120px; /* Limitar ancho máximo si es necesario */
+        margin-left: 5px; /* Pequeño espacio si la etiqueta está a la izquierda */
+        text-align: right; /* Mantener texto del input a la derecha */
+        padding: 3px;
+    }
+    #dataTable td input[type="color"] {
+        /* Puede que necesites ajustar el tamaño o posición del picker */
+        vertical-align: middle;
+        margin-left: 5px;
+        height: 25px;
+         width: 25px; /* Hacerlo un poco más pequeño */
+    }
+
+    /* Ajustar celda de Previsualización */
+    #dataTable td.preview-cell {
+        text-align: right; /* Alinear el texto "Texto Ejemplo" */
+        justify-content: flex-end; /* Alinear contenido flex a la derecha */
+        padding-left: 50%; /* Mantener padding para la etiqueta */
+        min-height: 40px; /* Darle un poco más de altura */
+    }
+     /* Quitar el padding izquierdo si quieres que ocupe todo el ancho disponible */
+     #dataTable td.preview-cell::before {
+        /* Mantener la etiqueta si se desea */
+         content: "PREVISUAL.";
+    }
+
+
+    /* Ajustar celda de Contraste */
+    #dataTable td.contrast-cell {
+         text-align: right; /* Alinear contenido a la derecha */
+         justify-content: flex-end; /* Alinear contenido flex a la derecha */
+         padding-left: 50%; /* Mantener padding para la etiqueta */
+    }
+    #dataTable td.contrast-cell span {
+        display: block; /* Para que los <br> funcionen bien */
+        line-height: 1.2;
+    }
+    #dataTable td.contrast-cell::before {
+         content: "CONTRASTE"; /* Mantener la etiqueta */
+    }
+
+
+    /* Ajustar botones (opcional: hacerlos de ancho completo) */
+    body > button, body > input[type="file"] { /* Seleccionar botones directamente bajo body */
+        width: 100%;
+        box-sizing: border-box; /* Incluir padding/border en el ancho */
+        margin-top: 10px;
+        margin-bottom: 5px;
+        padding: 12px; /* Hacerlos más fáciles de tocar */
+        font-size: 1rem;
+    }
+
+     /* Ocultar el input[file] original, ya que lo disparamos con el botón */
+    #importFile {
+        display: none;
+    }
+
+    /* Reducir margen general del body si es necesario */
+    body {
+        margin: 10px;
+        font-size: 14px; /* Ajustar tamaño de fuente base si es necesario */
+    }
+
+    h1 {
+        font-size: 1.5rem; /* Ajustar tamaño del título */
+    }
+}
+
+/* Opcional: Ajustes adicionales para pantallas MUY pequeñas */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    #dataTable td {
+        padding-left: 10px; /* Reducir padding si la etiqueta ocupa mucho */
+        padding-right: 10px;
+        text-align: left; /* Quizás alinear todo a la izquierda en pantallas muy chicas */
+        justify-content: space-between; /* Espacio entre etiqueta y valor */
+        flex-wrap: wrap; /* Permitir que el input/valor pase abajo si no cabe */
+    }
+
+    #dataTable td::before {
+        position: relative; /* Quitar posición absoluta */
+        left: auto;
+        width: 100%; /* Etiqueta ocupa todo el ancho */
+        padding-right: 0;
+        margin-bottom: 3px; /* Espacio entre etiqueta y valor */
+        display: block; /* Asegurar que esté en su propia línea */
+    }
+
+    #dataTable td input[type="text"],
+    #dataTable td input[type="color"],
+    #dataTable td.preview-cell,
+    #dataTable td.contrast-cell {
+        width: 100%; /* Ocupar todo el ancho debajo de la etiqueta */
+        box-sizing: border-box;
+        padding-left: 0; /* Quitar padding izquierdo específico */
+        text-align: left;
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+    #dataTable td.contrast-cell span {
+        text-align: left;
+    }
+
+
+}

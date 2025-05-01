@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMPARACION DE COLORES HTML</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Tabla de contraste de colores</h1>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>NOMBRE</th>
+                <th>COLOR DE FONDO (HEX)</th>
+                <th>COLOR DE FUENTE (HEX)</th>
+                <th>PREVISUALIZACION</th>
+                <th>CONTRASTE WCAG</th>  </tr>
+        </thead>
+        <tbody id="dataTableBody">
+            </tbody>
+    </table>>
+
+    <button id="addRowBtn">Añadir Fila</button>
+    <button id="exportBtn">Exportar Datos</button>
+    <button id="importBtn">Importar Datos</button>
+    <input type="file" id="importFile" accept=".json" style="display: none; ">
+    <script src="client.js"></script>
+</body>
+</html>
