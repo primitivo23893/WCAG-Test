@@ -107,7 +107,85 @@ footer a:hover {
 }
 
 
+/* Contenedor relativo para el botón absoluto */
+#dataTable tbody tr {
+    position: relative;
+    /* Transición suave para la aparición del botón (opcional) */
+    transition: background-color 0.2s ease-in-out; 
+}
 
+/* Estilo base para el botón 'X' */
+.delete-row-overlay-btn {
+    position: absolute;
+    top: 2px; /* Ajusta la distancia desde arriba */
+    right: 2px; /* Ajusta la distancia desde la derecha */
+    width: 20px; /* Ancho del botón */
+    height: 20px; /* Alto del botón */
+    background-color: rgba(255, 0, 0, 0.7); /* Rojo semi-transparente */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Círculo */
+    cursor: pointer;
+    font-size: 12px; /* Tamaño de la 'X' */
+    font-weight: bold;
+    line-height: 18px; /* Centrar la 'X' verticalmente */
+    text-align: center;
+    padding: 0;
+    z-index: 10; /* Asegurar que esté sobre el contenido de las celdas */
+
+    /* Inicialmente oculto */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+
+/* Mostrar el botón cuando el cursor está sobre la fila (tr) */
+#dataTable tbody tr:hover .delete-row-overlay-btn {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Estilo hover para el propio botón (opcional) */
+.delete-row-overlay-btn:hover {
+    background-color: rgba(200, 0, 0, 0.9); /* Rojo más oscuro y opaco */
+}
+
+/* --- AJUSTES RESPONSIVOS --- */
+@media (max-width: 768px) {
+    /* Cuando las filas se apilan, el `tr` se convierte en `display: block` */
+    /* El posicionamiento absoluto podría necesitar ajustes o ser diferente */
+
+    #dataTable tbody tr {
+        /* Mantenemos position: relative si queremos el botón aún relativo a la 'tarjeta' de fila */
+         padding-top: 25px; /* Añadir espacio arriba para que el botón no solape la primera "etiqueta" */
+    }
+    
+    .delete-row-overlay-btn {
+       /* Podrías querer que siempre sea visible en móvil/tablet */
+        /* opacity: 1; */
+        /* visibility: visible; */
+        
+        /* Ajustar posición si es necesario, por ejemplo, un poco más abajo */
+        top: 5px; 
+        right: 5px;
+        /* Quizás un poco más grande para tocarlo fácilmente */
+        /* width: 24px; */
+        /* height: 24px; */
+        /* line-height: 22px; */
+        /* font-size: 14px; */
+    }
+
+    /* QUITAR la etiqueta 'ACCIÓN' que ya no existe */
+     /* #dataTable td:nth-of-type(6)::before { content: ""; display: none; } */ /* Ya no hay 6ª celda */
+    
+    /* Asegúrate que los data-label de las 5 columnas originales siguen funcionando */
+     #dataTable td:nth-of-type(1)::before { content: "NOMBRE"; }
+     #dataTable td:nth-of-type(2)::before { content: "FONDO (HEX)"; }
+     #dataTable td:nth-of-type(3)::before { content: "FUENTE (HEX)"; }
+     #dataTable td:nth-of-type(4)::before { content: "PREVISUAL."; }
+     #dataTable td:nth-of-type(5)::before { content: "CONTRASTE"; }
+
+}
 
 @media (max-width: 768px) {
 
