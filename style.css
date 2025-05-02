@@ -84,6 +84,31 @@ button {
     font-weight: bold;
 }
 
+footer {
+    margin-top: 40px; /* Espacio entre el contenido principal y el footer */
+    padding: 20px; /* Espacio interno del footer */
+    text-align: center; /* Centrar el texto */
+    font-size: 0.9em; /* Tamaño de fuente un poco más pequeño */
+    color: #555; /* Color de texto gris oscuro */
+    border-top: 1px solid #eee; /* Línea sutil separadora arriba */
+}
+
+footer p {
+    margin: 5px 0; /* Pequeño espacio entre párrafos del footer */
+}
+
+footer a {
+    color: #0056b3; /* Color azul para el enlace */
+    text-decoration: none; /* Quitar subrayado por defecto */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Subrayar al pasar el ratón por encima */
+}
+
+
+
+
 @media (max-width: 768px) {
 
     /* Forzar a la tabla a no ser una tabla, sino bloques */
@@ -210,7 +235,16 @@ button {
     h1 {
         font-size: 1.5rem; /* Ajustar tamaño del título */
     }
+
+    footer {
+        margin-top: 25px;
+        padding: 15px;
+        font-size: 0.85em;
+    }
 }
+
+
+
 
 /* Opcional: Ajustes adicionales para pantallas MUY pequeñas */
 @media (max-width: 480px) {
@@ -249,6 +283,7 @@ button {
     #dataTable td.contrast-cell span {
         text-align: left;
     }
+
 
 
 }
